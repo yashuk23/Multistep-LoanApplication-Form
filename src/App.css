@@ -1,0 +1,151 @@
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f3f5f9;
+  color: #1e293b;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+.app-container {
+  min-height: 100vh;
+  padding: 32px 20px;
+}
+
+.app-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.app-header h1 {
+  margin-bottom: 8px;
+  color: #173b72;
+}
+
+.app-header p,
+.description {
+  color: #64748b;
+  line-height: 1.6;
+}
+
+.loan-card {
+  max-width: 760px;
+  margin: auto;
+  padding: 32px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px #0f172a0d;
+}
+
+.progress-header,
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.progress-header {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.progress-track {
+  height: 8px;
+  background: #e2e8f0;
+  border-radius: 20px;
+  margin: 16px 0 32px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: #2563eb;
+  transition: width 0.25s ease;
+}
+
+.loan-card h2 {
+  margin-bottom: 8px;
+}
+
+.loan-options {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin: 28px 0;
+}
+
+.loan-option {
+  min-height: 140px;
+  padding: 18px;
+  text-align: left;
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  background: white;
+  color: #1e293b;
+}
+
+.loan-option strong,
+.loan-option span {
+  display: block;
+}
+
+.loan-option span {
+  margin-top: 12px;
+  color: #64748b;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.loan-option:hover,
+.loan-option.selected {
+  border-color: #2563eb;
+  background: #eff6ff;
+}
+
+.loan-option.selected {
+  box-shadow: 0 0 0 1px #2563eb;
+}
+
+.navigation {
+  margin-top: 32px;
+}
+
+.navigation button {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  background: #173b72;
+  color: white;
+}
+
+.navigation button:disabled {
+  background: #cbd5e1;
+  cursor: not-allowed;
+}
+
+@media (max-width: 600px) {
+  .app-container {
+    padding: 20px 12px;
+  }
+
+  .loan-card {
+    padding: 20px;
+  }
+
+  .loan-options {
+    grid-template-columns: 1fr;
+  }
+
+  .loan-option {
+    min-height: auto;
+  }
+}
