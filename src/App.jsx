@@ -2,16 +2,24 @@
 import { useState } from "react";
 import "./App.css";
 
+import ProgressBar from "./components/ProgressBar";
+import StepNavigation from "./components/StepNavigation";
+
 function App() {
   const [currentStep, setCurrentStep] = useState(1);
   const [loanType, setLoanType] = useState("");
   const totalSteps = 10;
+
+  function handleBack() {
+    setCurrentStep((step) => Math.max(step - 1, 1));
+  }
 
   function handleContinue() {
     if (!loanType) {
       alert("Please select a loan type.");
       return;
     }
+
     setCurrentStep((step) => Math.min(step + 1, totalSteps));
   }
 
@@ -25,19 +33,13 @@ function App() {
       <main className="loan-card">
         <div className="progress-header">
           <span>Loan Application</span>
-          <span>
-            Step {currentStep} of {totalSteps}
-          </span>
+          <span>Step {currentStep} of {totalSteps}</span>
         </div>
 
-        <div className="progress-track">
-          <div
-            className="progress-fill"
-            style={{
-              width: `${(currentStep / totalSteps) * 100}%`,
-            }}
-          />
-        </div>
+        <ProgressBar
+          currentStep={currentStep}
+          totalSteps={totalSteps}
+        />
 
         <h2>Select Your Loan Type</h2>
         <p className="description">
@@ -60,8 +62,8 @@ function App() {
             },
           ].map((loan) => (
             <button
-              type="button"
               key={loan.type}
+              type="button"
               className={`loan-option ${loanType === loan.type ? "selected" : ""
                 }`}
               onClick={() => setLoanType(loan.type)}
@@ -72,23 +74,15 @@ function App() {
           ))}
         </div>
 
-        <div className="navigation">
-          <button
-            type="button"
-            disabled={currentStep === 1}
-            onClick={() =>
-              setCurrentStep((step) => Math.max(step - 1, 1))
-            }
-          >
-            Back
-          </button>
-
-          <button type="button" onClick={handleContinue}>
-            Continue
-          </button>
-        </div>
+        <StepNavigation
+          currentStep={currentStep}
+          totalSteps={totalSteps}
+          onBack={handleBack}
+          onContinue={handleContinue}
+        />
       </main>
     </div>
   );
 }
+
 export default App;
