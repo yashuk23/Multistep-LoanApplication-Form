@@ -1,25 +1,22 @@
 
 import { useState } from "react";
 import "./App.css";
-
 import ProgressBar from "./components/ProgressBar";
 import StepNavigation from "./components/StepNavigation";
+import LoanTypeStep from "./components/LoanTypeStep";
+import PersonalDetailsStep from "./components/PersonalDetailsStep";
 
 function App() {
   const [currentStep, setCurrentStep] = useState(1);
   const [loanType, setLoanType] = useState("");
-  const totalSteps = 10;
+  const [formData, setFormData] = useState({});
+  const totalSteps = 8;
 
   function handleBack() {
     setCurrentStep((step) => Math.max(step - 1, 1));
   }
 
   function handleContinue() {
-    if (!loanType) {
-      alert("Please select a loan type.");
-      return;
-    }
-
     setCurrentStep((step) => Math.min(step + 1, totalSteps));
   }
 
@@ -41,45 +38,35 @@ function App() {
           totalSteps={totalSteps}
         />
 
-        <h2>Select Your Loan Type</h2>
-        <p className="description">
-          Choose the loan that best matches your requirements.
-        </p>
 
-        <div className="loan-options">
-          {[
-            {
-              type: "Personal",
-              description: "For personal expenses and financial needs",
-            },
-            {
-              type: "Home",
-              description: "For purchasing or constructing a home",
-            },
-            {
-              type: "Business",
-              description: "For business expenses and expansion",
-            },
-          ].map((loan) => (
-            <button
-              key={loan.type}
-              type="button"
-              className={`loan-option ${loanType === loan.type ? "selected" : ""
-                }`}
-              onClick={() => setLoanType(loan.type)}
-            >
-              <strong>{loan.type} Loan</strong>
-              <span>{loan.description}</span>
-            </button>
-          ))}
-        </div>
+        {currentStep === 1 && (
+          <LoanTypeStep
+            loanType={loanType}
+            setLoanType={setLoanType}
+            formData={formData}
+            setFormData={setFormData}
+            dateOfBirth={formData.dateOfBirth}
+            onContinue={handleContinue}
+          />
+        )}
 
-        <StepNavigation
-          currentStep={currentStep}
-          totalSteps={totalSteps}
-          onBack={handleBack}
-          onContinue={handleContinue}
-        />
+        {currentStep === 2 && (
+          <PersonalDetailsStep
+            formData={formData}
+            setFormData={setFormData}
+            onContinue={handleContinue}
+            onBack={handleBack}
+          />
+        )}
+
+        {currentStep > 2 && (
+          <StepNavigation
+            currentStep={currentStep}
+            totalSteps={totalSteps}
+            onBack={handleBack}
+            onContinue={handleContinue}
+          />
+        )}
       </main>
     </div>
   );

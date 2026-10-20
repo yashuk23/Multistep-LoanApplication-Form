@@ -1,15 +1,7 @@
-function FormField({
-    label,
-    name,
-    type = "text",
-    value,
-    onChange,
-    placeholder,
-    error,
-    required = false,
-}) {
+export default function FormField({ label, name, type = "text", value, onChange, placeholder, error, required = false, }) {
     return (
         <div className="form-field">
+           
             <label htmlFor={name}>
                 {label}
                 {required && " *"}
@@ -35,5 +27,3 @@ function FormField({
         </div>
     );
 }
-
-export default FormField;
