@@ -5,6 +5,7 @@ import ProgressBar from "./components/ProgressBar";
 import StepNavigation from "./components/StepNavigation";
 import LoanTypeStep from "./components/LoanTypeStep";
 import PersonalDetailsStep from "./components/PersonalDetailsStep";
+import Step3KYC from "./components/Step3KYC";
 
 function App() {
   const [currentStep, setCurrentStep] = useState(1);
@@ -59,10 +60,12 @@ function App() {
           />
         )}
 
-        {currentStep > 2 && (
-          <StepNavigation
-            currentStep={currentStep}
-            totalSteps={totalSteps}
+        
+
+        {currentStep === 3 && (
+          <Step3KYC
+            formData={formData}
+            setFormData={setFormData}
             onBack={handleBack}
             onContinue={handleContinue}
           />

@@ -419,12 +419,12 @@ form>button[type="submit"] {
   transition: background 180ms ease, transform 180ms ease;
 }
 
-form>button[type="submit"]:hover {
+form button[type="submit"]:hover {
   background: var(--teal-hover);
   transform: translateY(-1px);
 }
 
-form>button[type="submit"]:focus-visible {
+form button[type="submit"]:focus-visible {
   outline: 3px solid var(--focus);
   outline-offset: 3px;
 }
@@ -458,4 +458,69 @@ form>button[type="submit"]:focus-visible {
   height: 16px;
   margin: 0;
   accent-color: var(--teal);
+}
+
+
+.verification-pending {
+  color: #b7791f;
+  font-size: 0.9rem;
+  margin-top: 6px;
+}
+
+.verification-success {
+  color: #14866d;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-top: 6px;
+}
+/* Aadhaar consent container */
+.consent-field {
+  display: block;
+  width: 100%;
+  margin: 20px 0;
+}
+
+/* Keep checkbox and text together */
+.consent-field .consent-label {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: flex-start !important;
+  justify-content: flex-start !important;
+  gap: 10px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  cursor: pointer;
+}
+
+/* Checkbox alignment */
+.consent-field .consent-label input[type="checkbox"] {
+  appearance: auto;
+  display: block;
+  position: static;
+  flex: 0 0 16px;
+  width: 16px;
+  min-width: 16px;
+  height: 16px;
+  margin: 3px 0 0;
+  padding: 0;
+  opacity: 1;
+  accent-color: var(--teal);
+  cursor: pointer;
+}
+
+/* Consent text */
+.consent-field .consent-label span {
+  display: block;
+  flex: 1;
+  min-width: 0;
+  width: auto;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+  overflow-wrap: anywhere;
 }
